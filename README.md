@@ -76,7 +76,7 @@ This button launch the snapshot export
 
 ![Open scene](pics/07_uvSet02.jpg)  
 
-4 - I select the objects to export there UVSnapshots  
+4 - I select the objects to export their UVSnapshots  
 
 ![Open scene](pics/11_selectObjects.jpg)    
 
