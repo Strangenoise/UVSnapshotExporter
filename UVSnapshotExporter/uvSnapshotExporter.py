@@ -15,6 +15,8 @@ import os
 import maya.cmds as mc
 from PySide2 import QtCore
 from PySide2 import QtWidgets
+from shiboken2 import wrapInstance
+from maya import OpenMayaUI as omui
 
 # Variables
 PLUGIN_NAME = 'UV Snapshot exporter'
@@ -40,11 +42,15 @@ class Exporter:
         :return: None
         """
 
+        mayaMainWindowPtr = omui.MQtUtil.mainWindow()
+        mayaMainWindow = wrapInstance(long(mayaMainWindowPtr), QtWidgets.QWidget)
+
         # Create our main window
         self.mainWindow = QtWidgets.QDialog()
+        self.mainWindow.setParent(mayaMainWindow)
         self.mainWindow.setWindowTitle(PLUGIN_NAME + ' version ' + PLUGIN_VERSION)
         self.mainWindow.setFixedSize(350, 350)
-        self.mainWindow.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
+        self.mainWindow.setWindowFlags(QtCore.Qt.Window)
 
         # Create vertical layout
         self.layVMainWindowMain = QtWidgets.QVBoxLayout()
